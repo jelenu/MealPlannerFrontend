@@ -3,7 +3,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import LoginScreen from '../screens/LoginScreen';
+import LoginScreen from '../screens/auth/LoginScreen';
+import RegisterScreen from '../screens/auth/RegisterScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 
 import { AuthContext } from '../contexts/AuthContext';
@@ -12,18 +13,19 @@ const AuthStack = createNativeStackNavigator(); // Stack navigator for authentic
 const AppStack = createBottomTabNavigator(); // Tab navigator for main app screens
 
 function AuthStackScreen() {
-  // Authentication stack with only the Login screen
+  // Authentication stack with Login and Register screens, header hidden
   return (
-    <AuthStack.Navigator>
+    <AuthStack.Navigator screenOptions={{ headerShown: false }}>
       <AuthStack.Screen name="Login" component={LoginScreen} />
+      <AuthStack.Screen name="Register" component={RegisterScreen} />
     </AuthStack.Navigator>
   );
 }
 
 function AppStackScreen() {
-  // Main app stack with the Profile screen as a tab
+  // Main app stack with the Profile screen as a tab, header hidden
   return (
-    <AppStack.Navigator>
+    <AppStack.Navigator screenOptions={{ headerShown: false }}>
       <AppStack.Screen name="Profile" component={ProfileScreen} />
     </AppStack.Navigator>
   );
